@@ -38,7 +38,15 @@ jobs:
           docker push "asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/crystal/nginx:$GITHUB_SHA" 
 
       - name: 'get secrets'
-        run: 'gcloud secrets versions access latest --secret="CRYSTAL_SECRET"'
+        run: |-
+          export CRYSTAL_SECRET=`gcloud secrets versions access latest --secret="CRYSTAL_SECRET"`
+          echo $CRYSTAL_SECRET
 
-      - name: 'get-pods'
-        run: 'kubectl get pods --all-namespaces'
+      - name: 'replace IMAGE and SECRETS'
+        run: |-
+          sed -ie s/IMAGE/"asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/crystal/nginx:$GITHUB_SHA"/g kubernetes/nginx.yaml
+          sed -ie s/CRYSTAL_SECRET_VALUE/$CRYSTAL_SECRET/g kubernetes/nginx.yaml
+          cat kubernetes/nginx.yaml
+
+      - name: 'deploy nginx'
+        run: 'kubectl apply -f kubernetes/nginx.yaml'
