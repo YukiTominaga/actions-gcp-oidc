@@ -23,8 +23,22 @@ jobs:
           cluster_name: 'crystal'
           location: 'asia-northeast1'
 
-      - id: 'get-secret'
+      - name: 'configure-docker'
+        run: 'gcloud auth configure-docker asia-northeast1-docker.pkg.dev --quiet'
+
+      - name: 'build docker image'
+        run: |-
+          docker build \
+            --tag "asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/crystal/nginx:$GITHUB_SHA" \
+            --build-arg GITHUB_SHA="$GITHUB_SHA" \
+            .
+
+      - name: 'push docker image'
+        run: |-
+          docker push "asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/crystal/nginx:$GITHUB_SHA" 
+
+      - name: 'get secrets'
         run: 'gcloud secrets versions access latest --secret="CRYSTAL_SECRET"'
 
-      - id: 'get-pods'
+      - name: 'get-pods'
         run: 'kubectl get pods --all-namespaces'
