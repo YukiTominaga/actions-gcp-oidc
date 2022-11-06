@@ -23,8 +23,8 @@ jobs:
           cluster_name: 'crystal'
           location: 'asia-northeast1'
 
-      - id: 'get secret'
+      - id: 'get-secret'
         run: 'gcloud secrets versions access latest --secret="CRYSTAL_SECRET"'
 
-      - id: 'get pods'
+      - id: 'get-pods'
         run: 'kubectl get pods --all-namespaces'
