@@ -2,6 +2,7 @@ name: gke
 on: workflow_dispatch
 jobs:
   deployGKE:
+    runs-on: ubuntu-latest
     permissions:
       contents: 'read'
       id-token: 'write'
