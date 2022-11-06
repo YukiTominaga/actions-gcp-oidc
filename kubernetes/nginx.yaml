@@ -18,3 +18,7 @@ spec:
               value: CRYSTAL_SECRET_VALUE
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              cpu: 1000m
+              memory: 1Gi
