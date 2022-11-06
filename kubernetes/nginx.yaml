@@ -12,7 +12,8 @@ spec:
         app: nginx
     spec:
       containers:
-        - name: IMAGE
+        - name: nginx
+          image: IMAGE
           env:
             - name: CRYSTAL_SECRET
               value: CRYSTAL_SECRET_VALUE
