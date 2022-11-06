@@ -44,7 +44,7 @@ jobs:
 
       - name: 'replace IMAGE and SECRETS'
         run: |-
-          sed -i -e s/IMAGE/"asia-northeast1-docker.pkg.dev/$GOOGLE_CLOUD_PROJECT/crystal/nginx:$GITHUB_SHA"/g kubernetes/nginx.yaml
+          sed -i -e s/IMAGE/"asia-northeast1-docker.pkg.dev\/$GOOGLE_CLOUD_PROJECT\/crystal\/nginx:$GITHUB_SHA"/g kubernetes/nginx.yaml
           sed -i -e s/CRYSTAL_SECRET_VALUE/$CRYSTAL_SECRET/g kubernetes/nginx.yaml
           cat kubernetes/nginx.yaml
 
