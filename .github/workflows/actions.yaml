@@ -1,8 +1,5 @@
 name: crystal
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 jobs:
   buildContainerImage:
     runs-on: ubuntu-20.04
@@ -28,9 +25,9 @@ jobs:
 
       - name: 'Configure docker for artifact registry'
         run: |
-          gcloud auth configure-docker asia-northeast1-docker.pkg.dev
+          gcloud auth configure-docker asia-northeast1-docker.pkg.dev --quiet
 
-      - name: Build container
+      - name: Build Container Image
         uses: docker/build-push-action@v2
         with:
           push: true
