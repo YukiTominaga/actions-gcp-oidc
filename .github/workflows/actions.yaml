@@ -1,7 +1,10 @@
 name: crystal
-on: workflow_dispatch
+on:
+  push:
+    branches:
+      - main
 jobs:
-  WorkloadIdentityFederationTest:
+  buildContainerImage:
     runs-on: ubuntu-20.04
 
     # Add "id-token" with the intended permissions.
