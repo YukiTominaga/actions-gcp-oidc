@@ -2,7 +2,7 @@ name: gke
 on: workflow_dispatch
 jobs:
   deployGKE:
-    permission:
+    permissions:
       contents: 'read'
       id-token: 'write'
 
