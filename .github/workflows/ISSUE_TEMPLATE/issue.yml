@@ -1,0 +1,53 @@
+name: New Task
+description: Create a New Task Issue
+title: "[task]: "
+labels: []
+body:
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: Purpose of the Issue
+      placeholder:
+    validations:
+      required: true
+  - type: textarea
+    id: task_list
+    attributes:
+      label: task list
+      description: Please list the specific tasks required to accomplish this task.
+      value: |
+        + [ ]
+    validations:
+      required: false
+  - type: textarea
+    id: definition_of_done
+    attributes:
+      label: condition of completion
+      description: Please indicate the state in which this task can be said to be "completed".
+    validations:
+      required: true
+
+  - type: textarea
+    id: reference
+    attributes:
+      label: reference
+      description: Related materials and issues
+    validations:
+      required: false
+  - type: textarea
+    id: notice
+    attributes:
+      label: notice
+      value: |
+        * 
+    validations:
+      required: false
+  - type: textarea
+    id: consideration
+    attributes:
+      label: consideration
+      value: |
+        * 
+    validations:
+      required: false
